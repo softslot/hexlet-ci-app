@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+
+    # The type of machine to run the job on
+    runs-on: ubuntu-latest
+
+    steps:
+        # Check-out repository under GitHub workspace
+        # https://github.com/actions/checkout
+      - uses: actions/checkout@v2
+        # Step's name
+      
+      # Install NodeJs
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      # Install project
+      - name: Install
+        run: make install
+
+      # Start project
+      - name: Start
+        run: make start
+
+      # Run tests
+      - name: Test
+        run: make test
+
+      # Run linter
+      - name: Lint
+        run: make lint
