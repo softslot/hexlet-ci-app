@@ -15,12 +15,6 @@ jobs:
         # https://github.com/actions/checkout
       - uses: actions/checkout@v2
         # Step's name
-
-      # Run Snyk
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       
       # Install NodeJs
       - uses: actions/setup-node@v3
@@ -43,3 +37,9 @@ jobs:
       # Run linter
       - name: Lint
         run: make lint
+
+      # Run Snyk
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
